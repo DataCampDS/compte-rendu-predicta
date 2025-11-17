@@ -21,3 +21,5 @@ Il y a 4 types de cellules :
 
 Chaque point correspond à une cellule, représentée par plusieurs milliers de gènes (chaque colonne est un gène) et un label (dans l'entraînement).
 Le jeu de données est de 1000 cellules pour l'entraînement, 500 cellules pour le test, donc 1500 en tout.
+
+On commence à analyser le dataset d'entraînement en regardant ses dimensions qui sont (1000, 13551). Les colonnes correspondent au type de cellule et à la présence des gènes dans la cellules, l'expression des gènes est alors au nombre de 13550, ce qui est très élevé. Nous avons alors trié les données géniques en supprimant les gènes qui ne sont pas pertinants pour différencier les cellules, comme les gènes qui sont toujours constants pour chaque type de cellules.
