@@ -23,3 +23,13 @@ Chaque point correspond à une cellule, représentée par plusieurs milliers de 
 Le jeu de données est de 1000 cellules pour l'entraînement, 500 cellules pour le test, donc 1500 en tout.
 
 On commence à analyser le dataset d'entraînement en regardant ses dimensions qui sont (1000, 13551). Les colonnes correspondent au type de cellule et à la présence des gènes dans la cellules, l'expression des gènes est alors au nombre de 13550, ce qui est très élevé. Nous avons alors trié les données géniques en supprimant les gènes qui ne sont pas pertinants pour différencier les cellules, comme les gènes qui sont toujours constants pour chaque type de cellules.
+
+
+# 1/12/2025
+
+On a travaillé sur le pre-processsing des données. Les colonnes ayant une valeur identique (ou presque) pour toutes les observations, c'est-à-dire les colonnes dont la variance est inferieur à 0.05, ont été supprimées. Cela a réduit le dataset d'un peu plus de 5000 colonnes. Ensuite, nous avons étudier la corrélation. Certaines colonnes étant fortement corrélées avec d'autres ont été supprimés. 
+
+On a tracé la taux de variance expliqué en fonction du nombre de composantes. Grâce à cela, on a pu contaster qu'avec 25 composantes, plus de 90% de variance était expliquée. On a alors réalisé une ACP avec 25 composantes principales.
+
+
+
