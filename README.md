@@ -31,5 +31,6 @@ On a travaillé sur le pre-processsing des données. Les colonnes ayant une vale
 
 On a tracé la taux de variance expliqué en fonction du nombre de composantes. Grâce à cela, on a pu contaster qu'avec 25 composantes, plus de 90% de variance était expliquée. On a alors réalisé une ACP avec 25 composantes principales.
 
-
+Pour les pipelines on a testé :  ACP + régression logistique, ACP + classifieur de Bayes, ACP + XGBOOST
+et pour l'instant c'est le dernier qui est le plus précis.
 
