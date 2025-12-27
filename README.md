@@ -34,3 +34,9 @@ On a tracé la taux de variance expliqué en fonction du nombre de composantes. 
 Pour les pipelines on a testé :  ACP + régression logistique, ACP + classifieur de Bayes, ACP + XGBOOST
 et pour l'instant c'est le dernier qui est le plus précis.
 
+
+# 22/12/2025
+
+On a testé d'équilibrer strictement les 4 classes pour voir si celle des NK_cells, qui est d'origine très sous représentée, pourrait devenir mieux prédite. Et en effet, en en limitant les données d'entrainement et en affichant la matrice de confusion on remarque que les vrais NK_cells sont 2 fois plus prédites. Avant elles étaient davantage confondues avec les T_cells_CD8+ que prédites positivement ce qui en faisait le problème majeur de la classification. Enfin, bien que l'équilibre stricte des classes n'a pas fait changer la prédiction des Cancer_cells, il a empiré la confusion des T_cells CD4+ et CD8+, qui constitue le deuxième problème de la classification.
+
+
