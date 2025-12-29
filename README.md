@@ -4,7 +4,6 @@ Les points hebdomadaires se feront sur ce README.md
 
 # 17/11/2025
 
-(Flavie) 
 J'ai testé plusieurs méthodes d'amélioration de l'algorithme.
 J'ai améliorer la normalisation et j'ai essayé de réduire le bruit. Cela m'a donné une meilleure accuracy.
 J'ai essayé d'utiliser une ACP mais le résultat n'était pas bon. Nous allons alors retravailler cette ACP pour trouver un nombre intéressant de composantes principales à utiliser.
@@ -43,3 +42,12 @@ On a testé d'équilibrer strictement les 4 classes pour voir si celle des NK_ce
 # 27/12/2025
 
 On a essayé de gérer la confusion des T_cells avec une méthode hiérarchique. D'abord on a regroupé les T_cells et on a entrainé un classifieur sur les Cancer_cells, les NK_cells, et les T_cells puis ensuite un deuxième classieur pour différencier les T_cells CD4+ et CD8+, avant de recombiner toutes les prédictions intermédiaires en sortie. En affichant la matrice de confusion on voit que les T_cells sont mieux prédites ainsi. Cependant, c'était d'abord léger, car sans la balance des classes, qui devait etre repensée avec ces données séparées, les NK_cells étaient toujours prédites comme des T_cells_CD8+. Ainsi, on a fait une balance stricte des classes pour le classifieur principal (sur les 3 classes), et on a fait l'entrainement du deuxieme classifieur sur toutes les T_cells. C'est donc bien la combinaison des deux techniques qui est satisfaisante car les problèmes sont liés par le fait que les NK_cells (sous représentés) étaient prédites comme des T_cells (dur à différencier).
+
+# 29/12/2025
+
+Finalement, on a décidé de re tester la régression logistique. La régression logistique gère toute seule le déséquilibre des classes grâce au paramètre class_weight='balanced', cela permet de conserver l’ensemble des données d’entraînement. Le gradient Boosting peut peut-être mener à du sur-apprentissage également, et c'est pour cela que l'on a voulu retester la régression logistique. Et en effet, la régression logistique présente un faible écart entre les performances d’entraînements et de tests et avec des performances élevées en termes de balanced accuracy.
+De plus, les NK_cells semblent être mieux prédites avec la régression logistique mais les CD8 semblent par contre être moins bien prédites. 
+Nous avons aussi remplacé la sélection des gènes par variance brute par une sélection utilisant le coefficient de variation, afin de privilégier des gènes réellement informatifs et d’éviter ceux qui sont très exprimés mais peu discriminants. Les résultats obtenus montrent que cette approche est au moins aussi performante pour la régression logistique mais pas pour le gradient boosting.
+L'accuracy obtenue est très bonne (0.85) mais inférieure à celle obtenue avec le gradient boosting (0.86). Mais si cette méthode peut nous éviter du sur-apprentissage, cela peut être une bonne option.
+
+En plus, nous avons fait des tests pour mesurer le nombre de composantes PCA a choisir en testant plusieurs valeurs et en comparant l’accuracy sur le test set. Trop peu de composantes perdent de l’information, trop de composantes ajoutent du bruit. Un compromis autour de 12–25 composantes maximise la performance tout en ayant un nombre raisonnable de composantes.
