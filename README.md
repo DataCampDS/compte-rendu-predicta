@@ -1,3 +1,9 @@
+Notes finales :
+
+Marion : 15.5/20
+Flavie : 16/20
+Samuel : 16/20
+
 # suivi-datacamp
 Les points hebdomadaires se feront sur ce README.md
 
